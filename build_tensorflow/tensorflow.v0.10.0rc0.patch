@@ -1,0 +1,13 @@
+diff --git farmhash.BUILD farmhash.BUILD
+index fe19e14..01d78c0 100644
+--- farmhash.BUILD
++++ farmhash.BUILD
+@@ -9,7 +9,7 @@ genrule(
+         exclude = [prefix_dir + "/config.h"],
+     ),
+     outs = [prefix_dir + "/config.h"],
+-    cmd = "pushd external/farmhash_archive/%s; workdir=$$(mktemp -d -t tmp.XXXXXXXXXX); cp -a * $$workdir; pushd $$workdir; ./configure; popd; popd; cp $$workdir/config.h $(@D); rm -rf $$workdir;" % prefix_dir,
++    cmd = "pushd external/farmhash_archive/%s; workdir=$$(mktemp -d -t tmp.XXXXXXXXXX); cp -a * $$workdir; pushd $$workdir; ./configure --build=arm-linux-gnu; popd; popd; cp $$workdir/config.h $(@D); rm -rf $$workdir;" % prefix_dir,
+ )
+ 
+ cc_library(
