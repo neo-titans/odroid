@@ -1,0 +1,28 @@
+diff --git compiler/build.gradle compiler/build.gradle
+index c0ffd4a..bfd8f4f 100644
+--- compiler/build.gradle
++++ compiler/build.gradle
+@@ -47,6 +47,7 @@ model {
+       }
+     }
+     gcc(Gcc) {
++      target("aarch_64");
+     }
+     clang(Clang) {
+     }
+@@ -59,11 +60,14 @@ model {
+     x86_64 {
+       architecture "x86_64"
+     }
++    aarch_64 {
++      architecture "aarch_64"
++    }    
+   }
+ 
+   components {
+     java_plugin(NativeExecutableSpec) {
+-      if (arch in ['x86_32', 'x86_64']) {
++      if (arch in ['x86_32', 'x86_64', 'aarch_64']) {
+         // If arch is not within the defined platforms, we do not specify the
+         // targetPlatform so that Gradle will choose what is appropriate.
+         targetPlatform arch
